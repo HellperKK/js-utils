@@ -1,0 +1,22 @@
+{
+  "name": "js-utils",
+  "version": "1.0.0",
+  "description": "Utils functions in js",
+  "main": "test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HellperKK/js-utils.git"
+  },
+  "author": "HellperKK",
+  "license": "Unlicence",
+  "bugs": {
+    "url": "https://github.com/HellperKK/js-utils/issues"
+  },
+  "homepage": "https://github.com/HellperKK/js-utils#readme",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
