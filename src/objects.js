@@ -13,8 +13,13 @@ function foretell(obj) {
     }
 }
 
+function then(obj, f) {
+    return f(obj)
+}
+
 module.exports = {
     clone,
     debug,
     foretell,
+    then,
 }

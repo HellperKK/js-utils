@@ -1,11 +1,12 @@
 const { test, expect } = require("@jest/globals")
-const { debug, foretell, clone } = require("./objects")
+const { debug, foretell, clone, then } = require("./objects")
 
 const num = 42
 const obj = {
     name: "john",
     age: 42
 }
+const f = x => x + 1
 
 test('call debug of x is x', () => {
     expect(debug(num)).toEqual(num)
@@ -20,4 +21,8 @@ test('map with fortell of x fills with x', () => {
 
 test('call clone of x is x', () => {
     expect(clone(obj)).toEqual(obj)
+})
+
+test('call then of x, f is f(x)', () => {
+    expect(then(num, f)).toEqual(f(num))
 })
