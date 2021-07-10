@@ -1,5 +1,5 @@
 const { test, expect } = require("@jest/globals")
-const { toMethod, bubble, invert, pcall } = require("./functions")
+const { toMethod, bubble, invert, pcall, pcallRight, chain, restrain } = require("./functions")
 
 const f2 = (a, b) => a.foo + b
 const f3 = (a, b, c) => a.foo + b - c
@@ -31,4 +31,31 @@ test('call pcall to partially appply', () => {
 })
 test('call pcall to partially appply with all', () => {
     expect(pcall(f2, obj, num)()).toEqual(f2(obj, num))
+})
+test('call pcall to partially appply with three args', () => {
+    expect(pcall(f3, obj, num)(numb)).toEqual(f3(obj, num, numb))
+})
+
+test('call pcallRight to partially appply', () => {
+    expect(pcallRight(f2, obj)(num)).toEqual(f2(num, obj))
+})
+test('call pcallRight to partially appply with all', () => {
+    expect(pcallRight(f2, obj, num)()).toEqual(f2(obj, num))
+})
+test('call pcallRight to partially appply with three args', () => {
+    expect(pcallRight(f3, obj, num)(numb)).toEqual(f3(numb, obj, num))
+})
+test('call pcallRight to partially appply with three args', () => {
+    expect(pcallRight(f3, obj)(num, numb)).toEqual(f3(num, numb, obj))
+})
+
+test('call chain to partially appply with three args', () => {
+    const base = {x: 0, y:42}
+    const baseb = {x: 42, y:0}
+    chain(b => {b.x += 3}, b => {b.x *= 14},b => {b.y = 0})(base)
+    expect(base).toEqual(baseb)
+})
+
+test('call retrain to fix js', () => {
+    expect(["1", "42", "3435"].map(restrain(parseInt, 1))).toEqual([1, 42, 3435])
 })
